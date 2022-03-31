@@ -52,20 +52,29 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        if type(self).__name__ is Running:
+        if type(self).__name__ == 'Running':
             return InfoMessage(
-                'Running', self.duration, self.get_distance(),
-                self.get_mean_speed(), self.get_spent_calories()
+                'Running',
+                self.duration,
+                self.get_distance(),
+                self.get_mean_speed(),
+                self.get_spent_calories()
             )
-        elif type(self).__name__ is SportsWalking:
+        elif type(self).__name__ == 'SportsWalking':
             return InfoMessage(
-                'SportsWalking', self.duration, self.get_distance(),
-                self.get_mean_speed(), self.get_spent_calories()
+                'SportsWalking',
+                self.duration,
+                self.get_distance(),
+                self.get_mean_speed(),
+                self.get_spent_calories()
             )
-        elif type(self).__name__ is Swimming:
+        elif type(self).__name__ == 'Swimming':
             return InfoMessage(
-                'Swimming', self.duration, self.get_distance(),
-                self.get_mean_speed(), self.get_spent_calories()
+                'Swimming',
+                self.duration,
+                self.get_distance(),
+                self.get_mean_speed(),
+                self.get_spent_calories()
             )
 
 
@@ -165,20 +174,14 @@ def read_package(workout_type: str, data: list) -> Training:
         'WLK': SportsWalking
     }
 
-    if workout_type == trainings.get('SWM'):
-        return trainings['SWM'](*data)
-
-    elif workout_type == trainings.get('RUN'):
-        return trainings['RUN'](*data)
-
-    elif workout_type == trainings.get('WLK'):
-        return trainings['WLK'](*data)
+    if workout_type in trainings:
+        return trainings[workout_type](*data)
 
 
 def main(training: Training) -> None:
     """Главная функция."""
-    info = Training.show_training_info(training)
-    return info.get_message()
+    info = training.show_training_info()
+    print(info.get_message())
 
 
 if __name__ == '__main__':
