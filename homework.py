@@ -77,7 +77,7 @@ class Training:
                 self.get_spent_calories()
             )
         else:
-            return InfoMessage(0,0,0,0,0)
+            return InfoMessage(0, 0, 0, 0, 0)
 
 
 class Running(Training):
