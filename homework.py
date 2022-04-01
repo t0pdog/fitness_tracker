@@ -17,10 +17,10 @@ class InfoMessage:
         """Возвращает строку сообщения."""
         return (
             f'Тип тренировки: {self.training_type};'
-            f' Длительность: {round(self.duration, 3)} ч.;'
-            f' Дистанция: {round(self.distance, 3)} км;'
-            f' Ср. скорость: {round(self.speed, 3)} км/ч;'
-            f' Потрачено ккал: {round(self.calories,3)}.'
+            f' Длительность: {"%.3f" %self.duration} ч.;'
+            f' Дистанция: {"%.3f" %self.distance} км;'
+            f' Ср. скорость: {"%.3f" %self.speed} км/ч;'
+            f' Потрачено ккал: {"%.3f" %self.calories}.'
         )
 
 
