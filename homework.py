@@ -76,6 +76,8 @@ class Training:
                 self.get_mean_speed(),
                 self.get_spent_calories()
             )
+        else:
+            return InfoMessage()
 
 
 class Running(Training):
