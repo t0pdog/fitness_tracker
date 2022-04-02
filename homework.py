@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
 class InfoMessage:
-    """Информационное сообщение о тренировке.""" 
+    """Информационное сообщение о тренировке."""
     training_type: str
     duration: float
     distance: float
@@ -46,14 +47,15 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         raise NotImplementedError('Определите get_spent_calories в %s.'
-         % (self.__class__.__name__))
+        % (self.__class__.__name__))
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
+        
         #Нужна ли эта проверка?
         # if type(self).__name__ == None:
         #     return InfoMessage(0, 0, 0, 0, 0)
-        
+
         return InfoMessage(
             type(self).__name__,
             self.duration,
@@ -61,7 +63,7 @@ class Training:
             self.get_mean_speed(),
             self.get_spent_calories()
         )
-      
+
         # Этот вариант, как я понял неудобен с точки зрения расширяемости:
         # if (type(self).__name__ == 'Running' or
         #     'SportsWalking' or 'Swimming'):
