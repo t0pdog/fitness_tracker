@@ -1,26 +1,23 @@
+from dataclasses import dataclass
+from typing import List
+
+@dataclass
 class InfoMessage:
-    """Информационное сообщение о тренировке."""
-    def __init__(self,
-                 training_type: str,
-                 duration: float,
-                 distance: float,
-                 speed: float,
-                 calories: float,
-                 ) -> None:
-        self.training_type = training_type
-        self.duration = duration
-        self.distance = distance
-        self.speed = speed
-        self.calories = calories
+    """Информационное сообщение о тренировке.""" 
+    training_type: str
+    duration: float
+    distance: float
+    speed: float
+    calories: float
 
     def get_message(self) -> str:
         """Возвращает строку сообщения."""
         return (
             f'Тип тренировки: {self.training_type};'
-            f' Длительность: {"%.3f" %self.duration} ч.;'
-            f' Дистанция: {"%.3f" %self.distance} км;'
-            f' Ср. скорость: {"%.3f" %self.speed} км/ч;'
-            f' Потрачено ккал: {"%.3f" %self.calories}.'
+            f' Длительность: {self.duration:.3f} ч.;'
+            f' Дистанция: {self.distance:.3f} км;'
+            f' Ср. скорость: {self.speed:.3f} км/ч;'
+            f' Потрачено ккал: {self.calories:.3f}.'
         )
 
 
@@ -48,36 +45,35 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        pass
+        raise NotImplementedError('Определите get_spent_calories в %s.'
+         % (self.__class__.__name__))
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        if type(self).__name__ == 'Running':
-            return InfoMessage(
-                'Running',
-                self.duration,
-                self.get_distance(),
-                self.get_mean_speed(),
-                self.get_spent_calories()
-            )
-        elif type(self).__name__ == 'SportsWalking':
-            return InfoMessage(
-                'SportsWalking',
-                self.duration,
-                self.get_distance(),
-                self.get_mean_speed(),
-                self.get_spent_calories()
-            )
-        elif type(self).__name__ == 'Swimming':
-            return InfoMessage(
-                'Swimming',
-                self.duration,
-                self.get_distance(),
-                self.get_mean_speed(),
-                self.get_spent_calories()
-            )
-        else:
-            return InfoMessage(0, 0, 0, 0, 0)
+        #Нужна ли эта проверка?
+        # if type(self).__name__ == None:
+        #     return InfoMessage(0, 0, 0, 0, 0)
+        
+        return InfoMessage(
+            type(self).__name__,
+            self.duration,
+            self.get_distance(),
+            self.get_mean_speed(),
+            self.get_spent_calories()
+        )
+      
+        # Этот вариант, как я понял неудобен с точки зрения расширяемости:
+        # if (type(self).__name__ == 'Running' or
+        #     'SportsWalking' or 'Swimming'):
+        #     return InfoMessage(
+        #         type(self).__name__,
+        #         self.duration,
+        #         self.get_distance(),
+        #         self.get_mean_speed(),
+        #         self.get_spent_calories()
+        #     )
+        # else:
+        #     return InfoMessage(0, 0, 0, 0, 0)
 
 
 class Running(Training):
@@ -168,7 +164,7 @@ class Swimming(Training):
         )
 
 
-def read_package(workout_type: str, data: list) -> Training:
+def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
     trainings = {
         'SWM': Swimming,
@@ -183,7 +179,8 @@ def read_package(workout_type: str, data: list) -> Training:
 def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
-    print(info.get_message())
+    info_message = info.get_message()
+    print(info_message)
 
 
 if __name__ == '__main__':
