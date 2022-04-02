@@ -47,12 +47,12 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         raise NotImplementedError('Определите get_spent_calories в %s.'
-        % (self.__class__.__name__))
+                                  % (self.__class__.__name__))
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        
-        #Нужна ли эта проверка?
+
+        # Нужна ли эта проверка?
         # if type(self).__name__ == None:
         #     return InfoMessage(0, 0, 0, 0, 0)
 
