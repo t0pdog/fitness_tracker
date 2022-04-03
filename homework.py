@@ -87,8 +87,8 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    COEFF_CAL_1:float = 0.035
-    COEFF_CAL_2:float = 0.029
+    COEFF_CAL_1: float = 0.035
+    COEFF_CAL_2: float = 0.029
     MINS_IN_HOUR: int = 60
 
     def __init__(self,
@@ -152,14 +152,16 @@ class Swimming(Training):
             * self.weight
         )
 
+
 # Я решил вынести словарь trainings из функции, так как внутри неё
-# он создается каждый раз заново - а это неэффективно. 
+# он создается каждый раз заново - а это неэффективно.
 # Или в данном случае обязательно следовать ТЗ? Что думаешь?
 trainings: Dict[str, Training] = {
     'SWM': Swimming,
     'RUN': Running,
     'WLK': SportsWalking
 }
+
 
 def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
@@ -178,7 +180,7 @@ def main(training: Training) -> None:
 
 
 if __name__ == '__main__':
-    packages:Dict[str, int] = [
+    packages: Dict[str, int] = [
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
