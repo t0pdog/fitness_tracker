@@ -152,19 +152,22 @@ class Swimming(Training):
             * self.weight
         )
 
+# Я решил вынести словарь trainings из функции, так как внутри неё
+# он создается каждый раз заново - а это неэффективно. 
+# Или в данном случае обязательно следовать ТЗ? Что думаешь?
+trainings: Dict[str, Training] = {
+    'SWM': Swimming,
+    'RUN': Running,
+    'WLK': SportsWalking
+}
 
 def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
-    trainings: Dict[str, Training] = {
-        'SWM': Swimming,
-        'RUN': Running,
-        'WLK': SportsWalking
-    }
 
     if workout_type in trainings:
         return trainings[workout_type](*data)
     else:
-        raise Warning("workout_type is invalid!")
+        print("workout_type is invalid!")
 
 
 def main(training: Training) -> None:
