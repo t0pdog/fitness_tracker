@@ -22,4 +22,4 @@ git clone git@github.com:t0pdog/fitness_tracker.git
 ```
 ---
 ### Author
-  **Shirikov Dima**
+  **Shirikov Dmitry**
