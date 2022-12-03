@@ -9,7 +9,7 @@ Receives data from sensors on physical activity and displays messages based on t
 * Calories burned: n.
 ---
 ### Technology:
-*Python 3.10.4
+* Python 3.10.4
 ---
 ### Installation:
 Clone the repository. On the command line:
