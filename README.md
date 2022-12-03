@@ -5,7 +5,7 @@ Receives data from sensors on physical activity and displays messages based on t
 * Workout type:
 * Duration: n hours;
 * Distance: n km;
-* Wed. speed: n km/h;
+* Average speed: n km/h;
 * Calories burned: n.
 ---
 ### Technology:
