@@ -52,10 +52,6 @@ class Training:
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
 
-        # Проверка 'if type(self).__name__ == None' не нужна,
-        # так как в read_package уже есть
-        # проверка 'if workout_type in trainings'
-
         return InfoMessage(
             type(self).__name__,
             self.duration,
@@ -153,9 +149,6 @@ class Swimming(Training):
         )
 
 
-# Я решил вынести словарь trainings из функции, так как внутри неё
-# он создается каждый раз заново - а это неэффективно.
-# Или в данном случае обязательно следовать ТЗ? Что думаешь?
 trainings: Dict[str, Training] = {
     'SWM': Swimming,
     'RUN': Running,
